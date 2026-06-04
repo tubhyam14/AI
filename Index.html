@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prolog Knowledge Base Collection</title>
+
+<style>
+    *{
+        margin:0;
+        padding:0;
+        box-sizing:border-box;
+    }
+
+    body{
+        font-family: Arial, sans-serif;
+        background:#f4f6f9;
+        padding:20px;
+    }
+
+    h1{
+        text-align:center;
+        margin-bottom:30px;
+        color:#2c3e50;
+    }
+
+    .card{
+        background:white;
+        padding:20px;
+        margin-bottom:25px;
+        border-radius:12px;
+        box-shadow:0 3px 10px rgba(0,0,0,0.1);
+    }
+
+    .card h2{
+        color:#1e88e5;
+        margin-bottom:15px;
+    }
+
+    pre{
+        background:#272822;
+        color:#f8f8f2;
+        padding:15px;
+        border-radius:8px;
+        overflow-x:auto;
+        white-space:pre-wrap;
+    }
+
+    .queries{
+        margin-top:15px;
+        background:#eef5ff;
+        padding:12px;
+        border-left:5px solid #1e88e5;
+        border-radius:6px;
+    }
+
+    .queries h3{
+        margin-bottom:8px;
+    }
+
+    ul{
+        padding-left:20px;
+    }
+
+    li{
+        margin-bottom:5px;
+    }
+</style>
+</head>
+
+<body>
+
+<h1>Prolog Knowledge Base Collection (Q1 - Q12)</h1>
+
+<div class="card">
+<h2>Q1: Employee Knowledge Base</h2>
+<pre>
+employee(rahul).
+employee(priya).
+employee(amit).
+employee(sneha).
+employee(rohan).
+employee(vikram).
+employee(neha).
+employee(pooja).
+
+department(rahul, cse).
+department(priya, cse).
+department(amit, ece).
+department(sneha, cse).
+department(rohan, it).
+department(vikram, ece).
+department(neha, cse).
+department(pooja, it).
+
+salary(rahul, 60000).
+salary(priya, 45000).
+salary(amit, 55000).
+salary(sneha, 70000).
+salary(rohan, 40000).
+salary(vikram, 65000).
+salary(neha, 35000).
+salary(pooja, 52000).
+
+senior_employee(X) :-
+    salary(X, S),
+    S > 50000.
+
+same_department(X, Y) :-
+    department(X, D),
+    department(Y, D),
+    X \= Y.
+
+colleague(X, Y) :-
+    same_department(X, Y).
+</pre>
+
+<div class="queries">
+<h3>Queries</h3>
+<ul>
+<li>?- employee(X).</li>
+<li>?- department(X, cse).</li>
+<li>?- senior_employee(X).</li>
+<li>?- colleague(rahul, X).</li>
+</ul>
+</div>
+</div>
+
+<div class="card">
+<h2>Q2: Vehicle Properties Knowledge Base</h2>
+<pre>
+vehicle(car).
+vehicle(bike).
+vehicle(bus).
+vehicle(scooter).
+vehicle(truck).
+vehicle(auto).
+vehicle(tesla).
+vehicle(cycle).
+
+color(car, red).
+color(bike, blue).
+color(bus, yellow).
+color(scooter, white).
+color(truck, black).
+color(auto, yellow).
+color(tesla, red).
+color(cycle, green).
+
+type(car, four_wheeler).
+type(bike, two_wheeler).
+type(bus, public).
+type(scooter, two_wheeler).
+type(truck, goods).
+type(auto, three_wheeler).
+type(tesla, four_wheeler).
+type(cycle, manual).
+
+fuel(car, petrol).
+fuel(bike, petrol).
+fuel(bus, diesel).
+fuel(scooter, electric).
+fuel(truck, diesel).
+fuel(auto, cng).
+fuel(tesla, electric).
+fuel(cycle, none).
+</pre>
+
+<div class="queries">
+<h3>Queries</h3>
+<ul>
+<li>?- color(X, red).</li>
+<li>?- fuel(X, electric).</li>
+<li>?- type(X, two_wheeler).</li>
+<li>?- fuel(X, petrol).</li>
+</ul>
+</div>
+</div>
+
+<div class="card">
+<h2>Q3: Computer Device Knowledge Base</h2>
+<pre>
+laptop(dell).
+laptop(hp).
+desktop(lenovo).
+desktop(acer).
+printer(canon).
+printer(epson).
+scanner(scanjet).
+scanner(hp_scan).
+
+electronic(X) :- laptop(X).
+electronic(X) :- desktop(X).
+electronic(X) :- printer(X).
+electronic(X) :- scanner(X).
+
+portable(X) :- laptop(X).
+</pre>
+
+<div class="queries">
+<h3>Queries</h3>
+<ul>
+<li>?- laptop(X).</li>
+<li>?- desktop(X).</li>
+<li>?- printer(X).</li>
+<li>?- scanner(X).</li>
+<li>?- electronic(dell).</li>
+<li>?- portable(lenovo).</li>
+<li>?- electronic(X).</li>
+<li>?- portable(X).</li>
+</ul>
+</div>
+</div>
+
+<div class="card">
+<h2>Q4: Hospital Management System</h2>
+<pre>
+doctor(sharma).
+doctor(sen).
+doctor(roy).
+
+patient(rahul).
+patient(priya).
+patient(amit).
+
+disease(fever).
+disease(cold).
+disease(diabetes).
+
+treats(sharma, fever).
+treats(sen, cold).
+treats(roy, diabetes).
+</pre>
+
+<div class="queries">
+<h3>Queries</h3>
+<ul>
+<li>?- treats(X, fever).</li>
+<li>?- doctor(X).</li>
+<li>?- patient(X).</li>
+<li>?- disease(X).</li>
+<li>?- treats(roy, X).</li>
+</ul>
+</div>
+</div>
+
+<div class="card">
+<h2>Q5: Book Library Management</h2>
+<pre>
+book(c_programming).
+book(java_fundamentals).
+book(data_science).
+book(machine_learning).
+book(english_grammar).
+
+author(c_programming, kanetkar).
+author(java_fundamentals, herbert_schildt).
+author(data_science, smith).
+author(machine_learning, tom_mitchell).
+author(english_grammar, wren_martin).
+
+category(c_programming, programming).
+category(java_fundamentals, programming).
+category(data_science, science).
+category(machine_learning, science).
+category(english_grammar, language).
+</pre>
+
+<div class="queries">
+<h3>Queries</h3>
+<ul>
+<li>?- author(X, kanetkar).</li>
+<li>?- category(X, science).</li>
+<li>?- category(X, language).</li>
+<li>?- book(X).</li>
+</ul>
+</div>
+</div>
+
+<div class="card">
+<h2>Q6: Country-Capital Knowledge Representation</h2>
+<pre>
+country(india).
+country(france).
+country(japan).
+country(germany).
+country(china).
+country(italy).
+country(egypt).
+country(canada).
+
+capital(india, new_delhi).
+capital(france, paris).
+capital(japan, tokyo).
+capital(germany, berlin).
+capital(china, beijing).
+capital(italy, rome).
+capital(egypt, cairo).
+capital(canada, ottawa).
+</pre>
+
+<div class="queries">
+<h3>Queries</h3>
+<ul>
+<li>?- continent(X, asia), capital(X, Cap).</li>
+<li>?- continent(X, europe).</li>
+<li>?- capital(india, X).</li>
+<li>?- country(X).</li>
+</ul>
+</div>
+</div>
+
+<div class="card">
+<h2>Q7: Recursive Mathematical Predicates</h2>
+<pre>
+factorial(0,1).
+factorial(N,F):-
+N>0,
+N1 is N-1,
+factorial(N1,F1),
+F is N*F1.
+
+power(_,0,1).
+power(X,Y,Z):-
+Y>0,
+Y1 is Y-1,
+power(X,Y1,Z1),
+Z is X*Z1.
+</pre>
+
+<div class="queries">
+<h3>Queries</h3>
+<ul>
+<li>?- factorial(5,F).</li>
+<li>?- power(2,5,P).</li>
+<li>?- sum(10,S).</li>
+</ul>
+</div>
+</div>
+
+<div class="card">
+<h2>Q8: Recursive List Processing Predicates</h2>
+<pre>
+list_length([],0).
+
+list_sum([],0).
+
+reverse_list([],[]).
+</pre>
+
+<div class="queries">
+<h3>Queries</h3>
+<ul>
+<li>?- list_length([1,2,3,4],L).</li>
+<li>?- list_sum([10,20,30],S).</li>
+<li>?- reverse_list([a,b,c],R).</li>
+</ul>
+</div>
+</div>
+
+<div class="card">
+<h2>Q9: Advanced Recursive Computations</h2>
+<pre>
+fib(0,0).
+fib(1,1).
+
+gcd(X,0,X).
+
+sum_digits(N,N):-
+N < 10.
+</pre>
+
+<div class="queries">
+<h3>Queries</h3>
+<ul>
+<li>?- fib(8,F).</li>
+<li>?- gcd(48,18,G).</li>
+<li>?- sum_digits(5678,S).</li>
+</ul>
+</div>
+</div>
+
+<div class="card">
+<h2>Q10: Mixed Knowledge Base</h2>
+<pre>
+person(ram).
+person(sita).
+person(amit).
+
+house(house1).
+house(house2).
+
+car(car1).
+car(car2).
+
+owns(ram, house1).
+owns(ram, car1).
+owns(sita, house2).
+owns(amit, car2).
+</pre>
+
+<div class="queries">
+<h3>Queries</h3>
+<ul>
+<li>?- owns(ram, X).</li>
+<li>?- owns(X, car1).</li>
+<li>?- owns(X, _).</li>
+<li>?- owns(X, Y).</li>
+</ul>
+</div>
+</div>
+
+<div class="card">
+<h2>Q11: Smart Room Intelligent Agent</h2>
+<pre>
+room(room1).
+room(room2).
+
+status(room1, dirty).
+status(room2, clean).
+
+action(clean) :-
+    status(room1, dirty).
+
+action(wait) :-
+    status(room2, clean).
+</pre>
+
+<div class="queries">
+<h3>Queries</h3>
+<ul>
+<li>?- status(room1, X).</li>
+<li>?- action(X).</li>
+</ul>
+</div>
+</div>
+
+<div class="card">
+<h2>Q12: Agricultural Mini Expert System</h2>
+<pre>
+crop(rice).
+crop(wheat).
+crop(maize).
+
+season(rice, rainy).
+season(wheat, winter).
+season(maize, summer).
+
+soil(rice, clay).
+soil(wheat, loamy).
+soil(maize, sandy).
+
+fertilizer(rice, urea).
+fertilizer(wheat, dap).
+fertilizer(maize, compost).
+
+recommend_crop(Season, Crop) :-
+    season(Crop, Season).
+</pre>
+
+<div class="queries">
+<h3>Queries</h3>
+<ul>
+<li>?- recommend_crop(winter, X).</li>
+<li>?- fertilizer(wheat, X).</li>
+<li>?- soil(rice, X).</li>
+</ul>
+</div>
+</div>
+
+</body>
+</html>
