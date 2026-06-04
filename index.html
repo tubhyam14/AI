@@ -11,7 +11,21 @@
         padding:0;
         box-sizing:border-box;
     }
+.copy-btn{
+    background:#1e88e5;
+    color:white;
+    border:none;
+    padding:8px 15px;
+    border-radius:6px;
+    cursor:pointer;
+    margin-bottom:10px;
+    font-size:14px;
+    transition:0.3s;
+}
 
+.copy-btn:hover{
+    background:#1565c0;
+}
     body{
         font-family: Arial, sans-serif;
         background:#f4f6f9;
@@ -467,6 +481,26 @@ recommend_crop(Season, Crop) :-
 </ul>
 </div>
 </div>
+<script>
+// Add a copy button to every code block automatically
+document.querySelectorAll(".card pre").forEach(pre => {
+    const btn = document.createElement("button");
 
+    btn.className = "copy-btn";
+    btn.innerText = "Copy Code";
+
+    btn.addEventListener("click", () => {
+        navigator.clipboard.writeText(pre.innerText);
+
+        btn.innerText = "Copied!";
+
+        setTimeout(() => {
+            btn.innerText = "Copy Code";
+        }, 2000);
+    });
+
+    pre.parentNode.insertBefore(btn, pre);
+});
+</script>
 </body>
 </html>
